@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Task;
-use Illuminate\Http\Request;
+use App\Http\Requests\TaskRequest;
 
 class Tasks extends Controller
 {
@@ -22,7 +22,7 @@ class Tasks extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
         $data = $request->only(["task"]);
         $task = Task::create($data);
@@ -49,7 +49,7 @@ class Tasks extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(TaskRequest $request, Task $task)
     {
         $data = $request->only(["task"]);
         $task->fill($data)->save();
